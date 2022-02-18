@@ -48,7 +48,7 @@
         }
 
         public function load_volumes() {
-            $handle = @fopen("volumes.csv", "r");
+            $handle = @fopen("storage/volumes.csv", "r");
             if ($handle) {
                 while (($line = fgets($handle) ) !== false) {
                     $volume = explode(';', $line );
@@ -61,7 +61,7 @@
                 }
                 fclose($handle);
             } else {
-                echo "File not found";
+                echo "File not foussnd";
             }
         }
 
@@ -103,6 +103,20 @@
                 $output[$value[$granularity]][] = $value['volume'];
             }
             return $output;
+        }
+        
+		 /****
+         *   List Commodity code implemented to sum volume based on commodity
+         */
+		public function list_commodity($id) {
+            $output     = array();
+            foreach ($this->volumes as $key => $value) {
+                    $ids  = explode('-',$id);
+                    if (in_array($value['profile_id'],$ids)) {
+                        $output[]= $value['volume'];
+                    }
+            }
+            return array_sum($output);
         }
 
     }

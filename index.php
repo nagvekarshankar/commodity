@@ -1,10 +1,10 @@
 <?php
-    include_once('config.php');
+    include_once('config/config.php');
 
     class KyosIndexController {
 
         function __construct() {
-            include_once('kyos_model.php');
+            include_once('classes/kyos_model.php');
             $this->kyos_model = new Kyos_model();
 
             $this->index();
@@ -25,7 +25,7 @@
                 $params['end_date'] = $_REQUEST['end_date'];
             }
             $rows = $this->kyos_model->list_rows($params);
-            include_once('kyos_view.php');
+            include_once('templates/kyos_view.php');
         }
     }
 
