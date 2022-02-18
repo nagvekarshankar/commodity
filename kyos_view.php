@@ -20,7 +20,7 @@
         <td><?php echo gmdate('d-m-Y', $row['end_date']); ?></td>
         <td><a href="/list_volumes.php?id=<?php echo $key+1;?>">View volumes</a>
     </tr>
-<? } ?>
+<?php } ?>
 </table>
 <br>
 <a href="summary.php">Show summarized volumes per commodity</a>

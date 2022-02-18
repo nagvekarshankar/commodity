@@ -71,7 +71,8 @@
                 if ( isset($params['entity']) && $value['entity'] != $params['entity'] ) {
                     continue;
                 }
-                if ( isset($params['commodity']) && $value['entity'] != $params['commodity'] ) {
+				// Replaced entity with commodity
+                if ( isset($params['commodity']) && $value['commodity'] != $params['commodity'] ) {
                     continue;
                 }
                 if ( isset($params['start_date']) && $value['start_date'] < strtotime($params['start_date']) ) {

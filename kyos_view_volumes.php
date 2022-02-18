@@ -17,5 +17,5 @@
         <td><?php echo $row['datetime']; ?></td>
         <td align="right"><?php echo $row['volume']; ?></td>
     </tr>
-<? } ?>
+<?php } ?>
 </table>
