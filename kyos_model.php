@@ -67,6 +67,8 @@
 
         public function list_rows($params = array()) {
             $output = array();
+			//Arrange profile details in ascending order
+			sort($this->profiles);
             foreach ($this->profiles as $key => $value) {
                 if ( isset($params['entity']) && $value['entity'] != $params['entity'] ) {
                     continue;
