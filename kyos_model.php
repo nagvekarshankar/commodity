@@ -80,7 +80,8 @@
                 if ( isset($params['start_date']) && $value['start_date'] < strtotime($params['start_date']) ) {
                     continue;
                 }
-                if ( isset($params['end_date']) && $value['end_date'] > strtotime($params['end_date']) ) {
+				// Strtotime provides date 00:00:00 by default can be done by providing +1 day but prefer to append 23:59:59 to get end time of the gived date
+                if ( isset($params['end_date']) && $value['end_date'] >= strtotime($params['end_date']." 23:59:59") ) {
                     continue;
                 }
                 $output[] = $value;
