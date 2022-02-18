@@ -13,7 +13,7 @@
         function index() {
             $id				= isset($_REQUEST['id'])?$_REQUEST['id']:'';
             $granularity	= isset($_REQUEST['granularity'])?$_REQUEST['granularity']:'hourly';
-
+			// Added granualarity in function
             $rows = $this->kyos_model->list_volumes($id,$granularity);
             include_once('templates/kyos_view_volumes.php');
         }
