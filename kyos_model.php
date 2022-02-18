@@ -52,9 +52,9 @@
             if ($handle) {
                 while (($line = fgets($handle) ) !== false) {
                     $volume = explode(';', $line );
-                    $this->volumes[] = array( 'profile_id' => $volume[0]
-                                            , 'datetime' => $volume[1]
-                                            , 'volume' => $volume[2]);
+                    $this->volumes[] = array( 'profile_id' => trim($volume[0],"\n")
+                                            , 'datetime' => trim($volume[1],"\n")
+                                            , 'volume' => trim($volume[2],"\n"));
                 }
                 if (!feof($handle)) {
                     echo "Error: unexpected fgets() fail\n";
@@ -91,14 +91,17 @@
         }
 
         public function list_volumes($id, $granularity = 'hourly') {
-            $output = array();
+            $output		= array();
+			// Maintain the Granular format that has to displayed on frontend
+			$granular	= ["hourly"=>'d-m-Y H:i:s',"daily"=>'d-m-Y',"montly"=>'m-Y'];
+
             foreach ($this->volumes as $key => $value) {
                 if ( $value['profile_id'] != $id ) {
                     continue;
                 }
-                $output[] = $value;
+				$value[$granularity] = date($granular[$granularity],strtotime($value['datetime']));
+                $output[$value[$granularity]][] = $value['volume'];
             }
-
             return $output;
         }
 

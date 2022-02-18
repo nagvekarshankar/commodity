@@ -11,13 +11,10 @@
         }
 
         function index() {
-            if  ( isset($_REQUEST['id']) ) {
-                $id = $_REQUEST['id'];
-            }
-            if  ( isset($_REQUEST['granularity']) ) {
-                $granularity = $_REQUEST['granularity'];
-            }
-            $rows = $this->kyos_model->list_volumes($id);
+            $id				= isset($_REQUEST['id'])?$_REQUEST['id']:'';
+            $granularity	= isset($_REQUEST['granularity'])?$_REQUEST['granularity']:'hourly';
+
+            $rows = $this->kyos_model->list_volumes($id,$granularity);
             include_once('kyos_view_volumes.php');
         }
     }
